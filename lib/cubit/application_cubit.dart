@@ -30,6 +30,13 @@ class ApplicationCubit extends Cubit<ApplicationState> with HydratedMixin {
     emit(state.copyWith(searchHistory: {}));
   }
 
+  removeSearchItem(String searchedWord) {
+    final history = {...state.searchHistory};
+    history.remove(searchedWord);
+
+    emit(state.copyWith(searchHistory: history));
+  }
+
   getDefinition(String? word) async {
     if (word == null || word.isEmpty) {
       logger().i('Empty or null text field');

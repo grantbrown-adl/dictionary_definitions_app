@@ -28,7 +28,7 @@ class _SearchPageState extends State<SearchPage> {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: TextField(
-          autofocus: true,
+          autofocus: false,
           controller: searchController,
           decoration: InputDecoration(
             hintText: 'Enter word',
@@ -45,6 +45,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
           ),
           onEditingComplete: loading ? null : () => _searchRequest(),
+          onTapOutside: (_) => FocusScope.of(context).unfocus(),
         ),
       ),
     );

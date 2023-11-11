@@ -73,7 +73,7 @@ class MainApp extends StatelessWidget {
                     await context.read<DialogProvider>().showConfirmation(
                           title: 'Clear Search History',
                           content:
-                              'Are you certain you want to clear your word searches?',
+                              'Are you certain you want to clear all of your word searches?',
                           confirmLabel: 'Yes',
                         );
 
@@ -119,11 +119,40 @@ class MainApp extends StatelessWidget {
                 var definitions = entry.value;
 
                 return ListTile(
-                  title: Center(
-                    child: Text(
-                      word.titleCase,
-                      style: const TextStyle(fontSize: 20),
-                    ),
+                  title: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          onPressed: () async {
+                            final cubit = context.read<ApplicationCubit>();
+
+                            final confirmed = await context
+                                .read<DialogProvider>()
+                                .showConfirmation(
+                                  confirmLabel: 'Yes',
+                                  title: 'Remove searched definition?',
+                                  content:
+                                      'Are you sure you want to remove this word definition?',
+                                );
+
+                            if (confirmed) {
+                              cubit.removeSearchItem(word);
+                            }
+                          },
+                          icon: const Icon(Icons.remove_circle),
+                          color: Colors.red,
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          word.titleCase,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ],
                   ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
