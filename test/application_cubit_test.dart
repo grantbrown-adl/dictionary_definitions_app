@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:dictionary_definitions_app/models/dictionary_entry.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dictionary_definitions_app/cubit/application_cubit.dart';
@@ -19,10 +20,23 @@ void main() {
       registerFallbackValue(FakeUri());
     });
 
-    final Map<String, List<Definition?>> baseState = {
-      'test': [Definition(definition: 'test_definition')],
-      'xcd': [Definition(definition: 'xcd_definition')],
+    final Map<String, List<Definition?>> baseSearches = {
+      'test': [
+        const Definition(
+          definition: 'test_definition',
+          example: 'this is a test example',
+        ),
+      ],
+      'xkcd': [
+        const Definition(
+          definition: 'xkcd_definition',
+          example: 'that xkcd comic is so phoney',
+        ),
+      ],
     };
+
+    final ApplicationState baseState =
+        ApplicationState(searchHistory: baseSearches);
 
     setUp(() {
       mockNotificationProvider = MockNotificationProvider();
@@ -40,9 +54,9 @@ void main() {
       applicationCubit.close();
     });
 
-    test('clearSearchHistory', () {
+    test('clear search history', () {
       final initialState =
-          applicationCubit.state.copyWith(searchHistory: baseState);
+          applicationCubit.state.copyWith(searchHistory: baseSearches);
 
       applicationCubit.clearSearchHistory();
 
@@ -52,7 +66,7 @@ void main() {
       );
     });
 
-    test('getDefinition with null word', () async {
+    test('ge definition with null word', () async {
       await applicationCubit.getDefinition(null);
 
       verifyNever(() => mockLoadingCubit.setLoadingState(true));
@@ -64,7 +78,7 @@ void main() {
       );
     });
 
-    test('getDefinition with empty word', () async {
+    test('get definition with empty word', () async {
       await applicationCubit.getDefinition('');
 
       verifyNever(() => mockLoadingCubit.setLoadingState(true));
@@ -76,7 +90,7 @@ void main() {
       );
     });
 
-    test('tests http send', () async {
+    test('get definition with word', () async {
       when(() => mockHttpClient.get(any())).thenAnswer(
         ((_) async {
           return Response(
@@ -92,5 +106,42 @@ void main() {
       verify(() => mockLoadingCubit.setLoadingState(false)).called(1);
       verify(() => mockHttpClient.get(any())).called(1);
     });
+
+    blocTest<ApplicationCubit, ApplicationState>(
+      'emits correct state when removeSearch is called',
+      build: () => ApplicationCubit(
+        notifications: mockNotificationProvider,
+        loadingCubit: mockLoadingCubit,
+        http: mockHttpClient,
+      ),
+      act: (bloc) => bloc.removeSearchItem('xkcd'),
+      seed: () => baseState,
+      expect: () => [
+        baseState.copyWith(
+          searchHistory: {
+            'test': [
+              const Definition(
+                definition: 'test_definition',
+                example: 'this is a test example',
+              ),
+            ],
+          },
+        ),
+      ],
+    );
+
+    blocTest<ApplicationCubit, ApplicationState>(
+      'emits empty state when clearSearchHistory is called',
+      build: () => ApplicationCubit(
+        notifications: mockNotificationProvider,
+        loadingCubit: mockLoadingCubit,
+        http: mockHttpClient,
+      ),
+      act: (bloc) => bloc.clearSearchHistory(),
+      seed: () => baseState,
+      expect: () => [
+        const ApplicationState(),
+      ],
+    );
   });
 }
