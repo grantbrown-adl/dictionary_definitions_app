@@ -112,7 +112,7 @@ class FlashNotificationProvider extends State<AppNotifications>
       case MessageType.error:
         return Colors.red.shade800;
       case MessageType.info:
-        return Colors.teal.shade200;
+        return Colors.grey.shade200;
       default:
         return Colors.transparent;
     }
