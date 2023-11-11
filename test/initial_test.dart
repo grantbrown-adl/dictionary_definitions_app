@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // TODO (gbrown): remove this test when appropriate
 void main() {
   testWidgets('github actions test', (WidgetTester tester) async {
-    await tester.pumpWidget(const AppEntryPoint());
+    await tester.pumpWidget(AppEntryPoint());
     expect(find.text('Hello World!'), findsOneWidget);
   });
 }
