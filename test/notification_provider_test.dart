@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:dictionary_definitions_app/providers/notification_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
