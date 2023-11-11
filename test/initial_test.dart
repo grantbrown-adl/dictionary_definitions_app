@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('github actions test', (WidgetTester tester) async {
     await tester.pumpWidget(AppEntryPoint());
-    expect(find.text('Hello World!'), findsOneWidget);
+    expect(find.text('Show Success'), findsOneWidget);
+    expect(find.text('Show Error'), findsOneWidget);
+    expect(find.text('Show Info'), findsOneWidget);
   });
 }

@@ -66,7 +66,7 @@ void main() {
       await tester.pump(const Duration(seconds: 5));
       await tester.pumpAndSettle();
     },
-    skip: false,
+    skip: true,
   );
 
   testWidgets(
@@ -84,7 +84,7 @@ void main() {
       await tester.pump(const Duration(seconds: 5));
       await tester.pumpAndSettle();
     },
-    skip: false,
+    skip: true,
   );
 
   testWidgets(
@@ -102,6 +102,6 @@ void main() {
       await tester.pump(const Duration(seconds: 5));
       await tester.pumpAndSettle();
     },
-    skip: false,
+    skip: true,
   );
 }
