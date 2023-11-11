@@ -1,0 +1,33 @@
+name: Code Checks and Tests
+
+on: [push]
+
+# Pushing to the same branch should cancel previous build
+concurrency:
+  group: ${{ github.ref }}/tests
+  cancel-in-progress: true
+
+jobs:
+  flutter-checks:
+    name: "Flutter Checks"
+    runs-on: [macOS-latest]
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version: "3.10.x"
+      - name: 📦 Install Packages
+        run: flutter pub get
+      - name: 🏃‍♂️ Run Build Runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+      - name: "💅 Format Check"
+        run:
+          # No easy way to ignore freezed files so just format them first.
+          dart format lib/**/*.freezed.dart && dart format --set-exit-if-changed lib/ test/
+      - name: '🧹 Lint'
+        run: 'flutter analyze'
+      - name: "🧪 Tests"
+        run: flutter test
