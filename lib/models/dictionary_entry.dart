@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 List<DictionaryEntry?> dictionaryEntryFromJson(String? str) =>
     (json.decode(str ?? "") as List<dynamic>?)
         ?.map((x) => DictionaryEntry?.fromJson(x as Map<String, dynamic>?))
@@ -67,22 +69,25 @@ class Meaning {
       };
 }
 
-class Definition {
-  String? definition;
-  String? example;
+class Definition extends Equatable {
+  final String? definition;
+  final String? example;
 
-  Definition({
+  const Definition({
     required this.definition,
     this.example,
   });
 
   factory Definition.fromJson(Map<String, dynamic>? json) => Definition(
         definition: json?["definition"] ?? '',
-        example: json?["example"],
+        example: json?["example"] ?? '',
       );
 
   Map<String, dynamic>? toJson() => {
         "definition": definition ?? '',
         "example": example ?? '',
       };
+
+  @override
+  List<Object?> get props => [definition, example];
 }
