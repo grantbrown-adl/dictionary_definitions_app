@@ -39,7 +39,7 @@ class DialogProvider {
 
   Future<bool?> showAlert({
     required String title,
-    required String content,
+    required Widget content,
     String confirmLabel = 'OK',
   }) {
     return showDialog(
@@ -48,7 +48,7 @@ class DialogProvider {
         title: Text(title),
         content: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 250),
-          child: Text(content),
+          child: content,
         ),
         actions: [
           TextButton(
