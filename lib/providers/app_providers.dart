@@ -15,17 +15,16 @@ class AppProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) =>
-              AppNotifications(navigatorKey: navigatorKey, child: child),
-        ),
-        RepositoryProvider(
-          create: (context) => DialogProvider(navigatorKey: navigatorKey),
-        ),
-      ],
-      child: child,
+    return AppNotifications(
+      navigatorKey: navigatorKey,
+      child: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(
+            create: (context) => DialogProvider(navigatorKey: navigatorKey),
+          ),
+        ],
+        child: child,
+      ),
     );
   }
 }
