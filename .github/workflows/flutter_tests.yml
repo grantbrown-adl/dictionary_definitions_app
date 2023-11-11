@@ -26,7 +26,7 @@ jobs:
       - name: "💅 Format Check"
         run:
           # No easy way to ignore freezed files so just format them first.
-          dart format lib/**/*.freezed.dart && dart format --set-exit-if-changed lib/ test/
+          dart format lib/**/*.freezed.dart && dart format lib/**/*.g.dart && dart format --set-exit-if-changed lib/ test/
       - name: '🧹 Lint'
         run: 'flutter analyze'
       - name: "🧪 Tests"
