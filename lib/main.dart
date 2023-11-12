@@ -1,5 +1,6 @@
 import 'dart:core';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:dictionary_definitions_app/cubit/application_cubit.dart';
 import 'package:dictionary_definitions_app/helpers/helpers.dart';
 import 'package:dictionary_definitions_app/models/dictionary_entry.dart';
@@ -24,7 +25,12 @@ void main() async {
         : await getApplicationSupportDirectory(),
   );
 
-  runApp(AppEntryPoint());
+  runApp(
+    DevicePreview(
+      enabled: kIsWeb,
+      builder: (context) => AppEntryPoint(),
+    ),
+  );
 }
 
 class AppEntryPoint extends StatelessWidget {
@@ -36,6 +42,7 @@ class AppEntryPoint extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
+      locale: DevicePreview.locale(context),
       theme: ThemeData(
         primarySwatch: buildMaterialColor(const Color(0xff516b5e)),
         extensions: const [
@@ -43,6 +50,8 @@ class AppEntryPoint extends StatelessWidget {
           FlashBarTheme(),
         ],
       ),
+      darkTheme: ThemeData.dark(),
+      builder: DevicePreview.appBuilder,
       home: AppProviders(
         navigatorKey: navigatorKey,
         child: const MainApp(),
