@@ -69,7 +69,6 @@ class SearchHistoryListView extends StatelessWidget {
                     children: [
                       const Text(
                         'Definition:',
-                        style: TextStyle(color: Colors.black),
                       ),
                       Text(entry.value.first!.definition.toString()),
                     ],
@@ -87,7 +86,6 @@ class SearchHistoryListView extends StatelessWidget {
                             children: [
                               Text(
                                 'Definition ${definitions.indexOf(definition) + 1}:',
-                                style: const TextStyle(color: Colors.black),
                               ),
                               Text(definition.definition!),
                             ],

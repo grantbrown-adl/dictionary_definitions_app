@@ -100,7 +100,7 @@ class MainApp extends StatelessWidget {
             const SizedBox(height: 12),
             const Center(
               child: Text(
-                'Search for a Word to Get a Definition',
+                'Search for a Word',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
