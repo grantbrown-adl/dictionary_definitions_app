@@ -93,6 +93,11 @@ Selecting the item at `Chrome (web-javascript)` on bottom right hand side of the
 ![Alt text](PastedGraphic-10.png)
 ![Alt text](PastedGraphic-11.png)
 
+### Video of App Running on Simulator
+
+https://github.com/grantbrown-adl/dictionary_definitions_app/assets/18681967/be062b53-3e84-4d00-8dae-0fa0ba6a638e
+
+
 
 # API Details
 
