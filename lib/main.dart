@@ -3,16 +3,17 @@ import 'dart:core';
 import 'package:dictionary_definitions_app/cubit/application_cubit.dart';
 import 'package:dictionary_definitions_app/helpers/helpers.dart';
 import 'package:dictionary_definitions_app/models/dictionary_entry.dart';
-import 'package:dictionary_definitions_app/pages/search_page.dart';
+import 'package:dictionary_definitions_app/pages/app_search_bar.dart';
 import 'package:dictionary_definitions_app/providers/app_providers.dart';
 import 'package:dictionary_definitions_app/providers/dialog_provider.dart';
+import 'package:dictionary_definitions_app/widgets/definition_app_bar.dart';
+import 'package:dictionary_definitions_app/widgets/search_history_list_view.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:recase/recase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,126 +63,54 @@ class MainApp extends StatelessWidget {
       (cubit) => cubit.state.culledList,
     );
 
-    return Scaffold(
-      floatingActionButton: definitionList.isNotEmpty
-          ? FloatingActionButton(
-              child: const Icon(Icons.delete),
-              onPressed: () async {
-                final appCubit = context.read<ApplicationCubit>();
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: definitionList.isNotEmpty
+            ? FloatingActionButton(
+                child: const Icon(Icons.delete),
+                onPressed: () async {
+                  final appCubit = context.read<ApplicationCubit>();
 
-                final confirmation =
-                    await context.read<DialogProvider>().showConfirmation(
-                          title: 'Clear Search History',
-                          content:
-                              'Are you certain you want to clear all of your word searches?',
-                          confirmLabel: 'Yes',
-                        );
+                  final confirmation =
+                      await context.read<DialogProvider>().showConfirmation(
+                            title: 'Clear Search History',
+                            content:
+                                'Are you certain you want to clear all of your word searches?',
+                            confirmLabel: 'Yes',
+                          );
 
-                if (confirmation) {
-                  appCubit.clearSearchHistory();
-                }
-              },
-            )
-          : null,
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.question_mark),
-            onPressed: () => context.read<DialogProvider>().showAlert(
-                  title: 'Help',
-                  content: const Wrap(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 8.0),
-                        child: Text(
-                          'Enter a word to search for and press the search icon:',
-                        ),
-                      ),
-                      Icon(Icons.search),
-                    ],
-                  ),
-                  confirmLabel: 'Ok',
-                ),
-          ),
-        ],
-        title: const Text('Dictionary Definitions'),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          const SearchPage(),
-          Expanded(
-            child: ListView.builder(
-              itemCount: definitionList.length,
-              itemBuilder: (context, index) {
-                var entry = definitionList[index];
-                var word = entry.key;
-                var definitions = entry.value;
-
-                return ListTile(
-                  title: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(),
-                          onPressed: () async {
-                            final cubit = context.read<ApplicationCubit>();
-
-                            final confirmed = await context
-                                .read<DialogProvider>()
-                                .showConfirmation(
-                                  confirmLabel: 'Yes',
-                                  title: 'Remove searched definition?',
-                                  content:
-                                      'Are you sure you want to remove this word definition?',
-                                );
-
-                            if (confirmed) {
-                              cubit.removeSearchItem(word);
-                            }
-                          },
-                          icon: const Icon(Icons.remove_circle),
-                          color: Colors.red,
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          word.titleCase,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ],
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (var definition in definitions) ...[
-                        if (definition != null) ...[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Definition: ${definitions.indexOf(definition) + 1}',
-                                  style: const TextStyle(color: Colors.black),
-                                ),
-                                Text(definition.definition!),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ],
-                      const Divider(),
-                    ],
-                  ),
-                );
-              },
+                  if (confirmation) {
+                    appCubit.clearSearchHistory();
+                  }
+                },
+              )
+            : null,
+        appBar: const DefinitionAppBar(),
+        body: Column(
+          children: [
+            const SizedBox(height: 12),
+            const Center(
+              child: Text(
+                'Search for a word to get a definition',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-        ],
+            const AppSearchBar(),
+            if (definitionList.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              const Center(
+                child: Text(
+                  'Search History',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Expanded(
+                child: SearchHistoryListView(definitionList: definitionList),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }
