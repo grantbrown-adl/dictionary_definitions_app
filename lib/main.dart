@@ -4,7 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:dictionary_definitions_app/cubit/application_cubit.dart';
 import 'package:dictionary_definitions_app/helpers/helpers.dart';
 import 'package:dictionary_definitions_app/models/dictionary_entry.dart';
-import 'package:dictionary_definitions_app/pages/app_search_bar.dart';
+import 'package:dictionary_definitions_app/widgets/app_search_bar.dart';
 import 'package:dictionary_definitions_app/providers/app_providers.dart';
 import 'package:dictionary_definitions_app/providers/dialog_provider.dart';
 import 'package:dictionary_definitions_app/widgets/definition_app_bar.dart';
