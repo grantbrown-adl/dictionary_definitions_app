@@ -71,7 +71,7 @@ class SearchHistoryListView extends StatelessWidget {
                         'Definition:',
                         style: TextStyle(color: Colors.black),
                       ),
-                      Text(entry.value.first.toString()),
+                      Text(entry.value.first!.definition.toString()),
                     ],
                   ),
                 )
