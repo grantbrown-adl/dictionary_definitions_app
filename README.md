@@ -49,8 +49,11 @@ I have hosted a web build at: https://grantbrown-adl.github.io/
 
 I've only tested on Chrome, ~~but didn't notice any issues with functionality.~~  
 ```
-On mobile (Android) there is an issue with keyboard that drops focus, this won't allow you to use the app on an android (and possibly iOS) browser without a keyboard attached (making the web version somewhat useless on mobile).  
-App .apk tested and working OK. Not sure if it's a `device_preview` issue, but not going to spend time troubleshooting. 
+On mobile (Android) there is an issue with keyboard that drops focus,
+this won't allow you to use the app on an android (and possibly iOS) browser without
+a keyboard attached (making the web version somewhat useless on mobile).  
+App .apk tested and working OK. Not sure if it's a `device_preview`
+issue, but not going to spend time troubleshooting. 
 ``` 
 It includes the `device_preview` package, that lets you test things such as different devices and `dark mode` etc,
 
