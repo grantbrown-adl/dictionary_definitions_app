@@ -6,6 +6,7 @@ class ApplicationState with _$ApplicationState {
 
   const factory ApplicationState({
     @Default({}) Map<String, List<Definition?>> searchHistory,
+    @Default(false) bool singleDefinitionDisplay,
   }) = _ApplicationState;
 
   List<MapEntry<String, List<Definition?>>> get culledList =>

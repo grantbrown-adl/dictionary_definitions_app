@@ -37,6 +37,14 @@ class ApplicationCubit extends Cubit<ApplicationState> with HydratedMixin {
     emit(state.copyWith(searchHistory: history));
   }
 
+  toggleSingleDefinitionDisplay() {
+    emit(
+      state.copyWith(
+        singleDefinitionDisplay: !state.singleDefinitionDisplay,
+      ),
+    );
+  }
+
   getDefinition(String? word) async {
     if (word == null || word.isEmpty) {
       logger().i('Empty or null text field');
