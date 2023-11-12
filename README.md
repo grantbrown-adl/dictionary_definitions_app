@@ -1,10 +1,6 @@
-# word_definitions
+# Word Definition App
 
-A new Flutter project.
-
-# Aim
-
-Create an app that queries an API and displays the result.
+Search for a word using the search bar and receive definitions for that word.
 
 # Considerations
 
@@ -14,7 +10,7 @@ lorem ipsum
 
 #### API: https://dictionaryapi.dev/
 
-#### Endpoint: https://api.dictionaryapi.dev/api/v2/entries/en/\<word>
+#### Endpoint: https://api.dictionaryapi.dev/api/v2/entries/en/<word\>
 
 Failure JSON:
 
