@@ -17,7 +17,7 @@ I used https://app.quicktype.io/ for the models with some of my own getters and 
 ### Search
 
 Basic `textField` with trailing `iconButton` to search, also searches on enter/done etc.  
-![Alt text](.\readme_images\image-5.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/image-5.png)
 
 ### Display
 
@@ -28,16 +28,16 @@ The list is set to only display a maximum of 10 items at any given time.
 
 ### Interaction
 You are able to toggle displaying one or multiple definitions by opening the options (`settings` icon) and switching the toggle:  
-![Alt text](.\readme_images\image.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/image.png)
 
 The red `iconButton` will prompt you to remove a single item from the search history:  
-![Alt text](.\readme_images\image-2.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/image-2.png)
 
 Whereas the `FloatingActionButton` will prompt and remove ALL search history items:  
-![Alt text](.\readme_images\image-3.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/image-3.png)
 
 The question mark `iconButton` will display a basic help dialog:  
-![Alt text](.\readme_images\image-4.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/image-4.png)
 
 
 
@@ -50,7 +50,7 @@ I have hosted a web build at: https://grantbrown-adl.github.io/
 I've only tested on Chrome, but didn't notice any issues with functionality.  
 It includes the `device_preview` package, that lets you test things such as different devices and `dark mode` etc,
 
-![Alt text](.\readme_images\image-1.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/image-1.png)
 
 
 ### iOS / Android
@@ -67,31 +67,31 @@ _Note that I use this daily as a dev machine, and everything is already setup so
 
 * Clone or download the repo. I'm using `SSH` but `HTTPS` should work.  
 Then open in `VS Code`:
-![Alt text](.\readme_images\PastedGraphic-2.png)
-![Alt text](.\readme_images\PastedGraphic-3.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-2.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-3.png)
 
 * Once `VS Code` loads open the terminal with `cmd+j`:
-![Alt text](.\readme_images\PastedGraphic-4.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-4.png)
 
 * My `flutter doctor` for reference:
-![Alt text](.\readme_images\PastedGraphic-6.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-6.png)
 
 * Run `flutter pub get` to download all the requiered packages:
-![Alt text](.\readme_images\PastedGraphic-5.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-5.png)
 
 * Run `flutter pub run build_runner build --delete-conflicting-outputs` to build out generated `freezed` components:
-![Alt text](.\readme_images\PastedGraphic-7.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-7.png)
 
 * Open / select simulator  
 Selecting the item at `Chrome (web-javascript)` on bottom right hand side of the screenshot should open the device selector. It may be something other than `Chrome (web-javascript)` but the location is the same:
-![Alt text](.\readme_images\PastedGraphic-8.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-8.png)
 
 * After selecting you can see the `Chrome (web-javascript)` has changed to `iPhone 14 (ios simulator)`:
-![Alt text](.\readme_images\PastedGraphic-9.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-9.png)
 
 * Once the simulator is open, open the `main.dart` file under `lib` and press `f5` or `Build > Run` from the toolbar menu:  
-![Alt text](.\readme_images\PastedGraphic-10.png)
-![Alt text](.\readme_images\PastedGraphic-11.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-10.png)
+![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-11.png)
 
 ### Video of App Running on Simulator
 
