@@ -83,7 +83,7 @@ Then open in `VS Code`:
 * My `flutter doctor` for reference:
 ![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-6.png)
 
-* Run `flutter pub get` to download all the requiered packages:
+* Run `flutter pub get` to download all the required packages:
 ![Alt text](https://github.com/grantbrown-adl/dictionary_definitions_app/blob/main/readme_images/PastedGraphic-5.png)
 
 * Run `flutter pub run build_runner build --delete-conflicting-outputs` to build out generated `freezed` components:
