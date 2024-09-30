@@ -2,16 +2,6 @@
 
 Search for a word using the search bar and receive definitions for that word.
 
-# Implementation Notes
-
-Testing is not as robust as I'd like, but this could sap an entire day to get proper coverage.
-
-I opted for a basic one page design rather than anything that used multiple pages and routing, this was because I wanted to reduce UX overhead of switching between pages for little reason.
-
-BLoC, Hydration, providers etc. was a bit overkill for a simple app like this, but was used as a demonstration of these features more than the app requiring them for functionality.
-
-I used https://app.quicktype.io/ for the models with some of my own getters and removal of redundant properties.
-
 # Features
 
 ### Search
